@@ -1,0 +1,22 @@
+[package]
+name = "DzProject"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+
+# mongodb
+serde = "1.0.188"
+futures = "0.3.28"
+
+# telegram
+teloxide = { version = "0.13", features = ["macros"] }
+log = "0.4"
+pretty_env_logger = "0.5"
+
+# union dependencies
+tokio = { version =  "1.8", features = ["full", "rt-multi-thread", "macros"] }
+
+
+[dependencies.mongodb]
+version = "3.1.0"
