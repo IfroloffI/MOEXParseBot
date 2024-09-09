@@ -4,6 +4,8 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+# json
+serde_json = {version="1.0.99"}
 
 # mongodb
 serde = "1.0.188"
