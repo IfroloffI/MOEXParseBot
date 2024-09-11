@@ -1,4 +1,7 @@
 # Telegram-бот на Rust
+
+//pretty_env_logger::init();
+
 ```
 /*
     let uri = "mongodb://127.0.0.1:27017";

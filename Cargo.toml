@@ -4,6 +4,8 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+# http requests
+reqwest = { version = "0.11", features = ["json"] }
 # json
 serde_json = {version="1.0.99"}
 
@@ -18,7 +20,6 @@ pretty_env_logger = "0.5"
 
 # union dependencies
 tokio = { version =  "1.8", features = ["full", "rt-multi-thread", "macros"] }
-
 
 [dependencies.mongodb]
 version = "3.1.0"

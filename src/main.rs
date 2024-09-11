@@ -1,27 +1,18 @@
 mod utils;
 use crate::utils::json_processing::json::*;
 
-use mongodb::{ 
-    bson::{Document, doc},
-    Client,
-    Collection
-};
-use teloxide::prelude::*;
+mod crates;
+use crate::crates::bot::bot::*;
+// use crate::crates::
 
 #[tokio::main]
-async fn main() -> mongodb::error::Result<()> {
+async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    pretty_env_logger::init();
+
     let secure_data: serde_json::Value = get_private_data();
     let token: String = get_token(&secure_data);
 
-    pretty_env_logger::init();
-    log::info!("Starting throw dice bot...");
-    let bot: Bot = Bot::new(token);
-
-    teloxide::repl(bot, |bot: Bot, msg: Message| async move {
-        bot.send_dice(msg.chat.id).await?;
-        Ok(())
-    })
-    .await;
-
+    let _error = start_bot(token).await;
+    log::info!("Stoping bot...");
     Ok(())
 }
