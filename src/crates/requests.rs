@@ -1,4 +1,4 @@
-pub mod request_data {
+pub mod requests {
     use reqwest::header::CONTENT_TYPE;
     use serde::{Deserialize, Serialize};
     use std::collections::HashMap;
