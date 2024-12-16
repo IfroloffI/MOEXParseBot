@@ -2,8 +2,7 @@ mod utils;
 use crate::utils::json_processing::json::*;
 
 mod crates;
-use crate::crates::bot::bot::*;
-// use crate::crates::
+use crate::crates::bot::*;
 
 fn main() {
     pretty_env_logger::init();

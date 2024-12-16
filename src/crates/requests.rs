@@ -1,28 +1,24 @@
-pub mod requests {
-    use reqwest::header::CONTENT_TYPE;
-    use serde::{Deserialize, Serialize};
-    use std::collections::HashMap;
+use serde::{Deserialize, Serialize};
+use anyhow::Result;
 
-    #[derive(Serialize, Deserialize, Debug)]
-    struct GETAPIResponse {
-        origin: String,
-    }
+#[derive(Serialize, Deserialize, Debug)]
+pub struct MOEXResponse {
+    pub securities: MOEXSecurities,
+}
 
-    #[derive(Serialize, Deserialize, Debug)]
-    struct JSONResponse {
-        json: HashMap<String, String>,
-    }
+#[derive(Serialize, Deserialize, Debug)]
+pub struct MOEXSecurities {
+    pub columns: Vec<String>,
+    pub data: Vec<Vec<String>>,
+}
 
-    pub async fn get_resp() -> Result<String, Box<dyn std::error::Error>> {
-        let client: reqwest::Client = reqwest::Client::new();
-        let resp200: GETAPIResponse = client
-            .get("https://httpbin.org/ip")
-            .header(CONTENT_TYPE, "application/json")
-            .send()
-            .await?
-            .json::<GETAPIResponse>()
-            .await?;
-
-        Ok(resp200.origin)
-    }
+pub async fn get_moex_data() -> Result<MOEXResponse> {
+    let client = reqwest::Client::new();
+    let resp = client
+    .get("https://iss.moex.com/iss/engines/currency/markets/selt/boards/united/securities.json")
+    .send()
+    .await?
+    .json::<MOEXResponse>()
+    .await?;
+    Ok(resp)
 }
